@@ -19,7 +19,9 @@ function showPage(list, page) {
          img.src = list[i].picture.thumbnail; //Sets img src to appropriate link
          img.alt = 'Profile Picture'; //Sets img alt 
 
+         const studentName = `${list[i].name.first} ${list[i].name.last}`
          const h3 = document.createElement('h3'); //Creates a h3 tag
+         h3.textContent = studentName;
 
          const emailSpan = document.createElement('span'); //Creates a span tag
          emailSpan.className = 'email'; //Sets spans class name
