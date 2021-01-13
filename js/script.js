@@ -119,7 +119,7 @@ function addSearchBar(list) {
 }
 
 function search(list) {
-   if
+
    const inputVal = searchInput.value.toLowerCase();
    const searchList = [];
 
