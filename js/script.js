@@ -68,7 +68,7 @@ function addPagination(list) {
       active.className = ''; //Sets currently active buttons class name to an empty string
       e.target.className = 'active'; //Sets clicked buttons class name to active
 
-      showPage(e.target.textContent); //Displays appropriate content
+      showPage(data, e.target.textContent); //Displays appropriate content
    });
 }
 
@@ -82,10 +82,10 @@ function notFound() {
    const paginateUl = document.querySelector('.link-list');
    const paginateLi = paginateUl.querySelector('li');
 
-   const h3 = document.createElement('h3');
-   h3.textContent = 'Student not found';
+   const h2 = document.createElement('h2');
+   h2.textContent = 'Student not found';
 
-   studentUl.appendChild(h3);
+   studentUl.appendChild(h2);
 
    for (let i = 0; i < paginateLi.length; i++) { //Loop through and remove all existing paginated links
       paginateUl.removeChild(paginateLi[i]);
@@ -97,7 +97,7 @@ function addSearchBar(list) {
 
    const label = document.createElement('label'); //Creates label tag
    label.for = 'search';
-   label.className = 'search';
+   label.className = 'student-search';
 
    const searchInput = document.createElement('input'); //Creates input tag
    searchInput.id = 'search';
@@ -107,41 +107,42 @@ function addSearchBar(list) {
    searchButton.type = 'button';
 
    const img = document.createElement('img'); //Creates img tag
-   img.src = 'img/icn-search.svg'; //Sets imgs src
+   img.src = '../img/icn-search.svg'; //Sets imgs src
    img.alt = 'Search Icon'; //Sets imgs alt
 
-   //Adds search bar to page
+   //Adds search bar and button to page
    header.appendChild(label);
    label.appendChild(searchInput);
    label.appendChild(searchButton);
    searchButton.appendChild(img);
 
+}
 
-   function search() {
-      const inputVal = searchInput.value.toLowerCase();
-      const search = [];
+function search(list) {
+   if
+   const inputVal = searchInput.value.toLowerCase();
+   const searchList = [];
 
-      for (let i = 0; i < list.length; i++) {
-         let name = list[i].name.first.toLowerCase();
-         name += ' ';
-         name += list[i].name.last.toLowerCase();
+   for (let i = 0; i < list.length; i++) {
+      let name = list[i].name.first.toLowerCase();
+      name += ' ';
+      name += list[i].name.last.toLowerCase();
 
-         if (name.includes(inputVal)) {
-            search.push(list[i]);
-         }
-
-         if (search.length > 0) {
-            showPage(search, 1);
-            addPagination(search);
-         } else {
-            notFound();
-         }
-
+      if (name.includes(inputVal)) {
+         searchList.push(list[i]);
       }
+
+      if (searchList.length > 0) {
+         showPage(searchList, 1);
+         addPagination(searchList);
+      } else {
+         notFound();
+      }
+
    }
 
-   searchInput.addEventListener('keyup', search);
-   searchButton.addEventListener('click', search);
+   searchInput.addEventListener('keyup', search());
+   searchButton.addEventListener('click', search());
 }
 
 // Call functions
