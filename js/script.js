@@ -46,6 +46,7 @@ function showPage(list, page) {
    }
 }
 
+
 function addPagination(list) {
 
    const ul = document.querySelector('.link-list'); //REfrences appropriate ul tag
@@ -74,81 +75,5 @@ function addPagination(list) {
    });
 }
 
-{/* <label for="search" class="student-search">
-            <input id="search" placeholder="Search by name...">
-            <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-          </label> */}
-
-function notFound() {
-   const studentUl = document.querySelector('.student-list');
-   const paginateUl = document.querySelector('.link-list');
-   const paginateLi = paginateUl.querySelector('li');
-
-   const h2 = document.createElement('h2');
-   h2.textContent = 'Student not found';
-
-   studentUl.appendChild(h2);
-
-   for (let i = 0; i < paginateLi.length; i++) { //Loop through and remove all existing paginated links
-      paginateUl.removeChild(paginateLi[i]);
-   }
-}
-
-function addSearchBar(list) {
-   const header = document.querySelector('.header'); //Selects the header tag
-
-   const label = document.createElement('label'); //Creates label tag
-   label.for = 'search';
-   label.className = 'student-search';
-
-   const searchInput = document.createElement('input'); //Creates input tag
-   searchInput.id = 'search';
-   searchInput.placeholder = 'Search by name...';
-
-   const searchButton = document.createElement('button'); //Creates button tag
-   searchButton.type = 'button';
-
-   const img = document.createElement('img'); //Creates img tag
-   img.src = '../img/icn-search.svg'; //Sets imgs src
-   img.alt = 'Search Icon'; //Sets imgs alt
-
-   //Adds search bar and button to page
-   header.appendChild(label);
-   label.appendChild(searchInput);
-   label.appendChild(searchButton);
-   searchButton.appendChild(img);
-
-}
-
-function search(list) {
-
-   const inputVal = searchInput.value.toLowerCase();
-   const searchList = [];
-
-   for (let i = 0; i < list.length; i++) {
-      let name = list[i].name.first.toLowerCase();
-      name += ' ';
-      name += list[i].name.last.toLowerCase();
-
-      if (name.includes(inputVal)) {
-         searchList.push(list[i]);
-      }
-
-      if (searchList.length > 0) {
-         showPage(searchList, 1);
-         addPagination(searchList);
-      } else {
-         notFound();
-      }
-
-   }
-
-   searchInput.addEventListener('keyup', search());
-   searchButton.addEventListener('click', search());
-}
-
-// Call functions
-
 showPage(data, 1);
 addPagination(data);
-addSearchBar(data);
