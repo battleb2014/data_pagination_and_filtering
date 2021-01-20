@@ -6,7 +6,7 @@ function showPage(list, page) {
    const firstIndex = (page * 9) - 10; //Index of first li to display
    const lastIndex = page * 9; //Index of last li to display
 
-   for (let i = 0; i < list.length; i++) { //Loop through data object
+   for (let i = firstIndex; i < list.length; i++) { //Loop through data object
       if (i > firstIndex && i < lastIndex) { //Display only 9 li per page
          const li = document.createElement('li'); //Creates li tag
          li.className = 'student-item cf'; //Sets li tags class name
@@ -75,69 +75,6 @@ function addPagination(list) {
    });
 }
 
-function addSearchBar() {
-   const header = document.querySelector('.header'); //Gets header tag
-
-   const label = document.createElement('label'); //
-   label.for = 'search';
-   label.className = 'student-search';
-
-   const input = document.createElement('input');
-   input.id = 'search';
-   input.placeholder = 'Search by name...';
-
-   const button = document.createElement('button');
-   button.type = 'button';
-
-   const img = document.createElement('img');
-   img.src = 'img/icn-search.svg';
-   img.alt = 'Search icon';
-
-   header.appendChild(label);
-   label.appendChild(input);
-   label.appendChild(button);
-   button.appendChild(img);
-}
-
-function notFound() {
-   const ul = document.querySelector('ul');
-
-   const h2 = document.createElement('h2');
-   h2.className = 'not-found';
-   h2.textContent = 'Sorry, student not found';
-
-   ul.appendChild(h2);
-}
-
-function search(list) {
-   addSearchBar();
-   let input = document.querySelector('#search');
-   inputVal = input.value.toLowerCase();
-   let prop;
-   if (inputVal.length === 0) {
-      prop = list;
-   }
-
-   input.addEventListener('input', (e) => {
-      const userInput = e.target.value;
-
-      const searchList = [];
-
-      if (userInput.length > 0) {
-         for (let i = 0; i < searchList.length; i++) {
-            if (list.name.first.includes(userInput) || list.name.last.includes(userInput)) {
-               searchList.push(list[i]);
-               prop = searchList;
-            } else {
-               notFound();
-            }
-         }
-      }
-   });
-   console.log(prop);
-   showPage(prop, 1);
-   addPagination(prop);
-}
-
 //Call functions
-search(data);
+showPage(data, 1);
+addPagination(data);
